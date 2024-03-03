@@ -1,0 +1,40 @@
+﻿@model List<esercizioS17L3.Models.Shoe>
+
+@{
+    ViewBag.Title = "Prodotti Eliminati";
+}
+
+<h2>Prodotti Eliminati</h2>
+
+<div class="row">
+    @foreach (var shoe in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="@Url.Content("~/uploads/" + shoe.CoverImage)" alt="Immagine prodotto">
+                <div class="card-body">
+                    <h5 class="card-title">@shoe.Name</h5>
+                    <p class="card-text">Prezzo: €@shoe.Price</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="@Url.Action("Details", "Shoe", new { id = shoe.ID })" class="btn btn-sm btn-outline-secondary">Dettagli</a>
+                        </div>
+                        <div class="btn-group">
+                            <form action="@Url.Action("Restore", "Shoe")" method="post">
+                                <input type="hidden" name="id" value="@shoe.ID" />
+                                <button type="submit" class="btn btn-sm btn-outline-success">Ripristina</button>
+                            </form>
+                        </div>
+                        <div class="btn-group">
+                            <form action="@Url.Action("HardDelete", "Shoe")" method="post">
+                                <input type="hidden" name="id" value="@shoe.ID" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Elimina definitivamente</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

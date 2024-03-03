@@ -1,0 +1,45 @@
+﻿@model List<esercizioS17L3.Models.Shoe>
+
+@{
+    ViewBag.Title = "Vetrina dello Shop";
+    var isAdmin = ViewBag.IsAdmin as bool? ?? false;
+}
+
+<h2>Vetrina scarpe da tennis</h2>
+
+<div class="row">
+    @foreach (var shoe in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="@Url.Content("~/uploads/" + shoe.CoverImage)" alt="Immagine prodotto">
+                <div class="card-body">
+                    <h5 class="card-title">@shoe.Name</h5>
+                    <p class="card-text">Prezzo: €@shoe.Price</p>
+                    @if (shoe.IsAvailable)
+                    {
+                        <p class="card-text text-success">Disponibile</p>
+                    }
+                    else
+                    {
+                        <p class="card-text text-danger">Non disponibile</p>
+                    }
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="@Url.Action("Details", "Shoe", new { id = shoe.ID })" class="btn btn-sm btn-outline-secondary">Dettagli</a>
+                        </div>
+                        @if (isAdmin)
+                        {
+                            <div class="btn-group">
+                                <form action="@Url.Action("SoftDelete", "Shoe")" method="post">
+                                    <input type="hidden" name="idToDelete" value="@shoe.ID" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Rimuovi dalla vetrina</button>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,51 @@
+﻿@model esercizioS17L3.Models.Shoe
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create New Shoe</h1>
+
+<form asp-controller="Shoe" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="@Model.Name" class="control-label"></label>
+        <input asp-for="@Model.Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Price" class="control-label"></label>
+        <input asp-for="@Model.Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Description" class="control-label"></label>
+        <textarea asp-for="@Model.Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CoverImage" class="control-label"></label>
+        <input type="file" name="CoverImage" class="form-control-file" />
+        <span asp-validation-for="CoverImage" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdditionalImage1" class="control-label"></label>
+        <input type="file" name="AdditionalImage1" class="form-control-file" />
+        <span asp-validation-for="AdditionalImage1" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="AdditionalImage2" class="control-label"></label>
+        <input type="file" name="AdditionalImage2" class="form-control-file" />
+        <span asp-validation-for="AdditionalImage2" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.IsAvailable" class="control-label"></label>
+        <input asp-for="@Model.IsAvailable" class="form-check-inline" />
+        <span asp-validation-for="IsAvailable" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.IsDeleted" class="control-label"></label>
+        <input asp-for="@Model.IsDeleted" class="form-check-inline" />
+        <span asp-validation-for="IsDeleted" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
